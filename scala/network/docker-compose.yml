@@ -1,0 +1,8 @@
+version: '3'
+services:
+  app:
+    image: flangelier/scala
+    command: scala main.scala
+    volumes:
+      - .:/src
+    working_dir: /src
