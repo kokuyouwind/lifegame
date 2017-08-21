@@ -1,0 +1,8 @@
+version: '3'
+services:
+  app:
+    image: golang:alpine
+    command: go run main.go
+    volumes:
+      - .:/src
+    working_dir: /src
