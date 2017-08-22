@@ -1,0 +1,8 @@
+version: '3'
+services:
+  app:
+    image: erlang:alpine
+    command: sh -c "erlc main.erl && erl -noshell -s main main -s init stop"
+    volumes:
+      - .:/src
+    working_dir: /src
