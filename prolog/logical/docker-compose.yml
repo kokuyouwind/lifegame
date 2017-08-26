@@ -1,0 +1,8 @@
+version: '3'
+services:
+  app:
+    image: swipl
+    command: ./main.pl
+    volumes:
+      - .:/src
+    working_dir: /src
