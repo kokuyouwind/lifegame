@@ -1,0 +1,8 @@
+version: '3'
+services:
+  app:
+    image: dockerpinata/sqlite
+    command: sh -c "[ -e database.db ] && rm database.db; sqlite3 database.db < main.sql"
+    volumes:
+      - .:/src
+    working_dir: /src
