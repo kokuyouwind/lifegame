@@ -70,7 +70,7 @@ void print_board(Board board)
 {
   for(int i = 0; i < SIZE; i++) {
     for(int j = 0; j < SIZE; j++) {
-      putchar(board[i][j] ? '*' : ' ');
+      putchar(board[i][j] ? '*' : '.');
     }
     putchar('\n');
   }
