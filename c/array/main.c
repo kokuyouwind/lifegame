@@ -3,6 +3,7 @@
 #include <time.h>
 
 #define SIZE 5
+typedef int** Board;
 
 int **generate_board()
 {
@@ -13,7 +14,7 @@ int **generate_board()
   return board;
 }
 
-void init_board(int **board)
+void init_board(Board board)
 {
   for (int i = 0; i < SIZE; i++) {
     for (int j = 0; j < SIZE; j++) {
@@ -22,26 +23,21 @@ void init_board(int **board)
   }
 }
 
-int find(int **board, int i, int j)
+int find(Board board, int i, int j)
 {
   if (i < 0 || i >= SIZE) { return 0; }
   if (j < 0 || j >= SIZE) { return 0; }
   return board[i][j];
 }
 
-void next(int **board, int **next_board)
+void next(Board board, Board next_board)
 {
   for (int i = 0; i < SIZE; i++) {
     for (int j = 0; j < SIZE; j++) {
       int count =
-        find(board, i-1, j-1) +
-        find(board, i-1, j)   +
-        find(board, i-1, j+1) +
-        find(board, i  , j-1) +
-        find(board, i  , j+1) +
-        find(board, i+1, j-1) +
-        find(board, i+1, j)   +
-        find(board, i+1, j+1);
+        find(board, i-1, j-1) + find(board, i-1, j)   + find(board, i-1, j+1) +
+        find(board, i  , j-1)                         + find(board, i  , j+1) +
+        find(board, i+1, j-1) + find(board, i+1, j)   + find(board, i+1, j+1);
       if (board[i][j] == 0 && count == 3) {
         next_board[i][j] = 1;
       } else if (board[i][j] == 1 && (count == 2 || count == 3)) {
@@ -53,7 +49,7 @@ void next(int **board, int **next_board)
   }
 }
 
-int board_equal(int **board, int **next_board)
+int board_equal(Board board, Board next_board)
 {
   for (int i = 0; i < SIZE; i++) {
     for (int j = 0; j < SIZE; j++) {
@@ -70,7 +66,7 @@ void print_separator(int step)
   printf("==%d==\n", step);
 }
 
-void print_board(int **board)
+void print_board(Board board)
 {
   for(int i = 0; i < SIZE; i++) {
     for(int j = 0; j < SIZE; j++) {
@@ -80,7 +76,14 @@ void print_board(int **board)
   }
 }
 
-void free_board(int **board)
+void swap_boards(Board* board, Board* next_board)
+{
+  void* tmp = *board;
+  *board = *next_board;
+  *next_board = tmp;
+}
+
+void free_board(Board board)
 {
   for (int i = 0; i < SIZE; i++) {
     free(board[i]);
@@ -93,20 +96,14 @@ int main()
   srand(time(NULL));
 
   int step = 0;
-  int **board = generate_board();
-  int **tmp;
-  int **next_board = generate_board();
+  Board board = generate_board(), next_board = generate_board(), tmp;
   init_board(board);
 
   do {
     print_separator(step++);
     print_board(board);
     next(board, next_board);
-
-    /* swap */
-    tmp = board;
-    board = next_board;
-    next_board = tmp;
+    swap_boards(&board, &next_board);
   } while (!board_equal(board, next_board));
 
   free_board(board);
