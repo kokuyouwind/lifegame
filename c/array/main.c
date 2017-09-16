@@ -96,7 +96,7 @@ int main()
   srand(time(NULL));
 
   int step = 0;
-  Board board = generate_board(), next_board = generate_board(), tmp;
+  Board board = generate_board(), next_board = generate_board();
   init_board(board);
 
   do {
