@@ -17,7 +17,7 @@ object LiveCell extends Cell {
 }
 
 object DeadCell extends Cell {
-  override def toString = " "
+  override def toString = "."
   val countLive = 0
   def next(liveCount: Int) = Cell(liveCount == 3)
 }

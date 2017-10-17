@@ -35,7 +35,7 @@ cell(Step, P, Status) :-
   Step1 is Step - 1, cell(Step1, P, Status1), count_neighbors(Step1, P, Count),
   next_status(Status1, Count, Status), !, celldef(Step, P, Status).
 
-print_status(0) :- format(" ").
+print_status(0) :- format(".").
 print_status(1) :- format("*").
 print_cell(Step, P) :- cell(Step, P, Status), print_status(Status).
 print_line(Step, X) :- foreach(index(Y), print_cell(Step, (X, Y))), format("~n").

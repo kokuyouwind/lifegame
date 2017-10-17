@@ -66,7 +66,7 @@ aggregate_board(Step) -> aggregate_board(Step, {?SIZE, ?SIZE}, [], []).
 
 print_column([]) -> io:nl();
 print_column([true|Rest]) -> io:format("*"), print_column(Rest);
-print_column([false|Rest]) -> io:format(" "), print_column(Rest).
+print_column([false|Rest]) -> io:format("."), print_column(Rest).
 
 print_board([]) -> ok;
 print_board([Col|Cols]) -> print_column(Col), print_board(Cols).

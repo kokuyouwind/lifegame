@@ -63,7 +63,7 @@ func printBoard(board Board) {
 		if board[position] == 1 {
 			fmt.Print("*")
 		} else {
-			fmt.Print(" ")
+			fmt.Print(".")
 		}
 		if position.y == Size - 1 {
 			fmt.Print("\n")

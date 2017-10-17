@@ -27,7 +27,7 @@ module Cell = struct
   let dead = 0
 
   let generate () = Random.int 2
-  let to_string cell = if cell = live then "*" else " "
+  let to_string cell = if cell = live then "*" else "."
   let next = function
     | (0, 3) -> live
     | (1, 2) -> live

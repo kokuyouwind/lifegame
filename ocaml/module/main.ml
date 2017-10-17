@@ -2,7 +2,7 @@ module Cell = struct
   type t = int
 
   let generate _ = Random.int 2
-  let to_string cell = if cell = 1 then "*" else " "
+  let to_string cell = if cell = 1 then "*" else "."
   let separator = ""
   let next count cell = if count = 3 || cell = 1 && count = 2 then 1 else 0
   let sum cell = cell

@@ -59,7 +59,7 @@ void print_board(Board board)
       flag >>= 1;
       continue;
     }
-    putchar(board & flag ? '*' : ' ');
+    putchar(board & flag ? '*' : '.');
   }
 }
 

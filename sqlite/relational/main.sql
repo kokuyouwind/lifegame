@@ -1,6 +1,6 @@
 CREATE TABLE cell_string(status int, str string);
 INSERT INTO cell_string VALUES (1, "*");
-INSERT INTO cell_string VALUES (0, " ");
+INSERT INTO cell_string VALUES (0, ".");
 
 CREATE TABLE rules(current int, count int, next int);
 INSERT INTO rules VALUES (0, 3, 1);

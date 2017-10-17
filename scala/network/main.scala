@@ -39,7 +39,7 @@ object ChangeCounter extends Clock.Subscriber {
 }
 
 class Printer(size: Int) extends Clock.Subscriber {
-  private val buffers = IndexedSeq.tabulate(size)(_ => new StringBuffer(" " * size + "\n"))
+  private val buffers = IndexedSeq.tabulate(size)(_ => new StringBuffer("." * size + "\n"))
   def update(line: Int, pos: Int, str: String) = buffers(line).replace(pos, pos+1, str)
 
   override def onEvent(event: Clock.Event) = event match {
@@ -74,7 +74,7 @@ class Cell(printer: Printer, line: Int, pos: Int) extends Clock.Subscriber {
     if (this.status != status) {
       ChangeCounter.countUp
       this.status = status
-      printer.update(line, pos, if (isLive) "*" else " ")
+      printer.update(line, pos, if (isLive) "*" else ".")
     }
   }
   private def nextStatus = (isLive, neighborsLiveCount) match {

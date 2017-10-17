@@ -8,7 +8,7 @@ let rec genboard h w =
 
 let to_string board =
   let to_string_col col =
-    List.fold_right (fun x acc -> (if x = 1 then "*" else " ") ^ acc ) col "\n"
+    List.fold_right (fun x acc -> (if x = 1 then "*" else ".") ^ acc ) col "\n"
   in
   List.fold_left (fun acc col -> acc ^ (to_string_col col)) "" board
 
