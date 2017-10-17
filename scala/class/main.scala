@@ -1,7 +1,6 @@
 object Cell {
   val random = new scala.util.Random
-  val cells = IndexedSeq(DeadCell, LiveCell)
-  def generate = cells(random.nextInt(2))
+  def generate = Cell(random.nextBoolean)
   def apply(live: Boolean): Cell = if(live) { LiveCell } else { DeadCell }
 }
 
