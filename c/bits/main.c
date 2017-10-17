@@ -56,7 +56,8 @@ void print_board(Board board)
   for(Board flag = FIRST; flag & LOOP_MASK; flag >>= 1) {
     if (flag & OUTSIDE_MASK) {
       putchar('\n');
-      flag >>= 2;
+      flag >>= 1;
+      continue;
     }
     putchar(board & flag ? '*' : '.');
   }
